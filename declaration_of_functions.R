@@ -72,10 +72,10 @@ find.pivot.recursive <- function(x, y,
   
 }
 
-# Non-recursive algo -----------------------------------------------------------
+# Sequential algo --------------------------------------------------------------
 
-find.pivot.linear <- function(x, y, 
-                              tolerance = .15) {
+find.pivot.sequential <- function(x, y, 
+                                  tolerance = .15) {
   n <- length(x)
   last.pivot <- 1
   pivot_list <- x[1]
@@ -112,12 +112,24 @@ find.pivot.linear <- function(x, y,
 # Top-level find.pivot() function ----------------------------------------------
 
 find.pivot <- function(x,y,
-                       mode = "Linear",
+                       mode = "Sequential",
                        tolerance = .15,
                        depth = 1,
                        max.depth = Inf) {
-  if (mode == "Linear") {
-    find.pivot.linear(x,y,
+  if (length(x) != length(y)) {
+    warning("'x' and 'y' must be vectors of same length")
+    NULL
+  } else if (length(x) == 1) {
+    result <- data.frame(pivot = x,
+                         value = y,
+                         inclination = NA)
+    result
+  } else if (length(x) == 2) {
+    result <- data.frame(pivot = x,
+                         value = y,
+                         inclination = (y[2]-y[1])/(x[2]-x[1]))
+  } else if (mode == "Sequential") {
+    find.pivot.sequential(x,y,
                       tolerance = tolerance)
   } else if (mode == "Recursive") {
     find.pivot.recursive(x,y,
@@ -125,8 +137,8 @@ find.pivot <- function(x,y,
                          depth = depth,
                          max.depth = max.depth)
   } else {
-    warning("Non recognized 'mode' argument, reverting to 'Linear'")
-    find.pivot.linear(x,y,
+    warning("Non recognized 'mode' argument, reverting to 'Sequential'")
+    find.pivot.sequential(x,y,
                       tolerance = tolerance)
   }
 }
