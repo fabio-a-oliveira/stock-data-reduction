@@ -161,4 +161,11 @@ for (i in 1:nrow(stock)) {
   
 }
 
+# Quick test - max depth -------------------------------------------------------
+
+# stock <- rstock(240)
+
+pp <- find.pivot(stock$day,stock$value,mode="Recursive",max.depth = 3)
+
+pp
 
