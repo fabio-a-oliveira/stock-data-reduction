@@ -271,7 +271,7 @@ pivot.points.sequential
 
 We see that there is a significant reductions in the quantity of points
 required to describe the stock prices over the 2 year period. For a 10%
-tolerance, we observe the both algorithms typically require around 10
+tolerance, we observe the both algorithms typically require around 5
 pivot points per year (\~240 individual data points) worth of data.
 
 We also note that the set of pivot points calculated with each of the
