@@ -144,7 +144,7 @@ From the images, it is evident that, given the 10% tolerance, a set of
 around 20 points is normally sufficient to represent the full set of 960
 points in the original data.
 
-## Sequential algo
+## Sequential algorithm
 
 In order to deal of the limitation of the recursive algorithm, namely
 that the entire data set must be known at the time of calculation, the
